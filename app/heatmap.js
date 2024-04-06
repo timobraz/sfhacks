@@ -1,7 +1,12 @@
+import { View, Text } from "react-native";
 import React from "react";
 
-function Heatmap() {
-  return <div>Heatmap</div>;
-}
+const Heatmap = () => {
+  return (
+    <View>
+      <Text>Heatmap</Text>
+    </View>
+  );
+};
 
 export default Heatmap;

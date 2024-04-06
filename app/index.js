@@ -1,7 +1,7 @@
-import { View, Text } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import React from "react";
-import { StatusBar } from "expo-status-bar";
+import { router } from "expo-router";
 import { useFonts } from "expo-font";
 
 const Feed = () => {
@@ -14,10 +14,10 @@ const Feed = () => {
         <View className="font-[Koulen] h-screen   ">
           <Text className="font-[Koulen] text-[50px] tracking-[20px]  text-center pt-5">Navigation</Text>
           <View className="-space-y-44 flex h-screen ">
-            <View className="bg-pink-300 w-full h-44  rounded-t-[48px] p-8 -mb-8">
+            <TouchableOpacity className="bg-pink-300 w-full h-44  rounded-t-[48px] p-8 -mb-8" onPress={() => router.push("/feed")}>
               <Text className="text-5xl font-extrabold ">Upload</Text>
               <Text className="text-2xl tracking-[-1px]">Take a pic of your trash</Text>
-            </View>
+            </TouchableOpacity>
             <View className="bg-slate-800 w-full h-44  rounded-t-[48px] p-8 -my-4">
               <Text className="text-5xl font-extrabold text-orange-100">Leaderboard</Text>
               <Text className="text-2xl tracking-[-1px] text-orange-100">Take a pic of your trash</Text>

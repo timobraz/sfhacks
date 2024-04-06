@@ -1,7 +1,12 @@
+import { View, Text } from "react-native";
 import React from "react";
 
-function Feed() {
-  return <div>Feed</div>;
-}
+const Feed = () => {
+  return (
+    <View>
+      <Text>Feed</Text>
+    </View>
+  );
+};
 
 export default Feed;

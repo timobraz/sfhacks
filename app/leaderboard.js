@@ -1,7 +1,12 @@
+import { View, Text } from "react-native";
 import React from "react";
 
-function Leaderboard() {
-  return <div>Leaderboard</div>;
-}
+const Leaderboard = () => {
+  return (
+    <View>
+      <Text>Leaderboard</Text>
+    </View>
+  );
+};
 
 export default Leaderboard;
