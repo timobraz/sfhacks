@@ -1,60 +1,54 @@
-import { View, Text, TouchableOpacity } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
 import React from "react";
-import { router } from "expo-router";
-import { useFonts } from "expo-font";
-import Navbar from "../components/navbar";
 
-const Feed = () => {
+import About from "./about";
+import Upload from "./upload";
+import Leaderboard from "./leaderboard";
+import Heatmap from "./heatmap";
+import Menu from "./Menu"; // Assuming Menu is in the same directory
+import Feed from "./feed";
+import { useFonts } from "expo-font";
+
+const Stack = createStackNavigator();
+
+const App = () => {
   const [fontsLoaded] = useFonts({
     Koulen: require("../assets/fonts/Koulen.ttf"),
   });
-  {
-    return !fontsLoaded ? null : (
-      <View className="h-full flex flex-1">
-        <View className="font-[Koulen] h-screen   ">
-          <Text className="font-[Koulen] text-[45px] tracking-[20px] w-full text-center ml-2 pt-5">
-            Navigation
-          </Text>
-          {/* <Navbar className="absolute bg-blue-200 w-full"></Navbar> */}
-          <View className="-space-y-44 flex h-screen">
-            <TouchableOpacity
-              className="bg-[#D7BCED] w-full h-44 rounded-t-[48px] p-8 -mb-8"
-              onPress={() => router.push("/upload")}
-            >
-              <Text className="text-5xl font-extrabold ">Upload</Text>
-              <Text className="text-2xl tracking-[-1px]">
-                Take a pic of your trash
-              </Text>
-            </TouchableOpacity>
-            <View className="bg-[#202020] w-full h-44  rounded-t-[48px] p-8 -my-4">
-              <Text className="text-5xl font-extrabold text-orange-100">
-                Leaderboard
-              </Text>
-              <Text className="text-2xl tracking-[-1px] text-orange-100">
-                See the top Ten earth lovers
-              </Text>
-            </View>
-            <View className="bg-[#CBD87D] w-full h-44  rounded-t-[48px] p-8 -my-4">
-              <Text className="text-5xl font-extrabold ">Heat Map</Text>
-              <Text className="text-2xl tracking-[-1px]">
-                Popular trash pickup zones
-              </Text>
-            </View>
-            <View className="bg-[#EB5851] w-full  rounded-t-[48px] p-8 -my-4 h-full">
-              <Text className="text-5xl font-extrabold text-orange-100 ">
-                About
-              </Text>
-              <Text className="text-2xl tracking-[-1px] text-orange-100">
-                Read our story
-              </Text>
-            </View>
-          </View>
-        </View>
-        <Navbar />
-      </View>
-    );
+
+  if (!fontsLoaded) {
+    return null;
   }
+  return (
+    <Stack.Navigator
+      initialRouteName="Feed"
+      independent={true}
+      screenOptions={{
+        headerBackTitle: "Back",
+        headerBackTitleStyle: {
+          color: "black",
+          fontSize: 20,
+          fontWeight: "bold",
+        },
+        headerTitleStyle: {
+          fontSize: 20,
+          fontWeight: "800",
+        },
+      }}
+    >
+      <Stack.Screen name="Menu" component={Menu} />
+      <Stack.Screen name="About" component={About} />
+      <Stack.Screen name="Upload" component={Upload} />
+      <Stack.Screen name="Leaderboard" component={Leaderboard} />
+      <Stack.Screen name="Heatmap" component={Heatmap} />
+      <Stack.Screen
+        name="Feed"
+        component={Feed}
+        options={{ headerShown: false }}
+      />
+    </Stack.Navigator>
+  );
 };
 
-export default Feed;
+export default App;
