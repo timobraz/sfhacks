@@ -37,7 +37,7 @@ const App = () => {
         },
       }}
     >
-      <Stack.Screen name="Menu" component={Menu} />
+      <Stack.Screen name="Menu" component={Menu} options={{ headerShown: false }}/>
       <Stack.Screen name="About" component={About} />
       <Stack.Screen name="Upload" component={Upload} />
       <Stack.Screen name="Leaderboard" component={Leaderboard} />

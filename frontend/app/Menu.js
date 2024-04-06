@@ -1,56 +1,45 @@
-import { View, Text, TouchableWithoutFeedback } from "react-native";
-import { router } from "expo-router";
+import { View, Text,  TouchableWithoutFeedback } from "react-native";
+import {StyleSheet, SafeAreaView} from 'react-native';
 import React from "react";
-import Navbar from "../components/navbar";
+import {
+  SafeAreaProvider,
+  useSafeAreaInsets,
+} from 'react-native-safe-area-context';
 
-const Menu = () => {
+
+const Menu = ({ navigation }) => {
+  const insets = useSafeAreaInsets();
+
+
   return (
-    <View className="flex-1">
-      <View className="font-[Koulen]">
-        <Text className="font-[Koulen] text-[30px] tracking-[20px] text-center pt-5 ml-3">
-          Navigation
-        </Text>
+    <SafeAreaView className='flex-1 bg-inherit' style={{paddingTop: insets.top, paddingBottom: insets.bottom}}>
+        <Text className="font-[Koulen] text-[55px] tracking-[20px] text-center ml-3">Navigation</Text>
         <View className="-space-y-44 flex h-screen ">
-          <TouchableWithoutFeedback onPress={() => router.push("/upload")}>
-            <View className="bg-pink-300 w-full h-60  rounded-t-[48px] p-8 -mb-20">
-              <Text className="text-4xl font-extrabold ">UPLOAD</Text>
-              <Text className="text-2xl tracking-[-1px]">
-                Take a pic of your trash
-              </Text>
+          <TouchableWithoutFeedback  onPress={() => navigation.navigate('Upload')}>
+          <View className="bg-[#D7BCED] w-full h-60  rounded-t-[48px] p-8 -mb-16">
+            <Text className="text-5xl font-extrabold font-[Koulen] leading-loose tracking-[-2px] pt-[17px] mt-2">UPLOAD</Text>
+            <Text className="text-xl tracking-[-1px] -mt-2 font-[Koulen]">Take a pic of your trash</Text>
             </View>
           </TouchableWithoutFeedback>
-          <TouchableWithoutFeedback onPress={() => router.push("/leaderboard")}>
-            <View className="bg-slate-800 w-full h-60 rounded-t-[48px] p-8 -my-4 -mb-12">
-              <Text className="text-4xl font-extrabold text-orange-100">
-                LEADERBOARD
-              </Text>
-              <Text className="text-2xl tracking-[-1px] text-orange-100">
-                See the top 10 earth lovers
-              </Text>
+          <TouchableWithoutFeedback  onPress={() => navigation.navigate('Leaderboard')}>
+          <View className="bg-[#202020] w-full h-60 rounded-t-[48px] p-8 -my-4 -mb-16">
+            <Text className="text-5xl font-extrabold text-white tracking-[-2px] font-[Koulen] pt-[17px] mt-2">LEADERBOARD</Text>
+            <Text className="text-xl tracking-[-1px] text-white font-[Koulen] -mt-2">See the top 10 earth lovers</Text></View>
+          </TouchableWithoutFeedback>
+          <TouchableWithoutFeedback  onPress={() => navigation.navigate('Heatmap')}>
+          <View className="bg-[#CBD87D] w-full h-60 rounded-t-[48px] p-8 -my-4 -mb-14 mt-2">
+            <Text className="text-5xl font-extrabold tracking-[-2px] font-[Koulen] pt-[17px]">HEAT MAP</Text>
+            <Text className="text-xl tracking-[-1px] font-[Koulen] -mt-2">Popular trash pickup zones</Text>
             </View>
           </TouchableWithoutFeedback>
-          <TouchableWithoutFeedback onPress={() => router.push("/heatmap")}>
-            <View className="bg-yellow-300 w-full h-60 rounded-t-[48px] p-8 -my-4 -mb-14">
-              <Text className="text-4xl font-extrabold ">HEAT MAP</Text>
-              <Text className="text-2xl tracking-[-1px]">
-                Popular trash pickup zones
-              </Text>
-            </View>
-          </TouchableWithoutFeedback>
-          <TouchableWithoutFeedback onPress={() => router.push("/about")}>
-            <View className="bg-orange-700 w-full rounded-t-[48px] p-8 -my-4 h-full -mb-8">
-              <Text className="text-4xl font-extrabold text-orange-100 ">
-                ABOUT
-              </Text>
-              <Text className="text-2xl tracking-[-1px] text-orange-100">
-                Read our story
-              </Text>
+          <TouchableWithoutFeedback  onPress={() => navigation.navigate('About')}>
+          <View className="bg-[#EB5851] w-full rounded-t-[48px] p-8 -my-4 h-full -mb-12">
+            <Text className="text-5xl font-extrabold text-white tracking-[-2px] font-[Koulen] pt-[17px] mt-2">ABOUT</Text>
+            <Text className="text-xl tracking-[-1px] text-white font-[Koulen] -mt-2">Read our story</Text>
             </View>
           </TouchableWithoutFeedback>
         </View>
-      </View>
-      <Navbar />
-    </View>
+    </SafeAreaView>
   );
 };
 
