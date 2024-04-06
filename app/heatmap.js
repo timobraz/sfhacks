@@ -1,5 +1,6 @@
-import { View, Text } from "react-native";
+import { StyleSheet, View, Text } from "react-native";
 import React from "react";
+import MapView, { PROVIDER_GOOGLE } from "react-native-maps";
 
 const BlurredRedDot = () => {
   return (
@@ -30,8 +31,32 @@ const Heatmap = ({ navigation }) => {
         <BlurredRedDot />
         <BlurredRedDot />
       </View>
+      <View>
+        <MapView
+          style={styles.map}
+          provider={PROVIDER_GOOGLE}
+          initialRegion={{
+            latitude: 37.739871,
+            longitude: -122.443093,
+            latitudeDelta: 0.15,
+            longitudeDelta: 0.15,
+          }}
+          showsUserLocation={true}
+        />
+      </View>
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  map: {
+    width: "100%",
+    height: "85%",
+    borderRadius: 10,
+  },
+});
 
 export default Heatmap;
