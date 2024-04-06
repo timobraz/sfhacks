@@ -7,6 +7,7 @@ import Leaderboard from "./leaderboard";
 import Heatmap from "./heatmap";
 import Menu from "./Menu"; // Assuming Menu is in the same directory
 import Feed from "./feed";
+import Profile from "./profile";
 import { useFonts } from "expo-font";
 
 const Stack = createStackNavigator();
@@ -21,7 +22,7 @@ const App = () => {
   }
   return (
     <Stack.Navigator
-      initialRouteName="Feed"
+      initialRouteName="Profile"
       independent={true}
       screenOptions={{
         headerBackTitle: "Back",
@@ -41,7 +42,12 @@ const App = () => {
       <Stack.Screen name="Upload" component={Upload} />
       <Stack.Screen name="Leaderboard" component={Leaderboard} />
       <Stack.Screen name="Heatmap" component={Heatmap} />
-      <Stack.Screen name="Feed" component={Feed} options={{ headerShown: false }} />
+      <Stack.Screen name="Profile" component={Profile} />
+      <Stack.Screen
+        name="Feed"
+        component={Feed}
+        options={{ headerShown: false }}
+      />
     </Stack.Navigator>
   );
 };
