@@ -5,7 +5,7 @@ import numpy as np
 import cv2
 
 # Load the image and model
-image = Image.open("image.png")
+image = Image.open("img2.jpg")
 model = YOLO("yolov8m-seg.pt")
 
 # Make a prediction
@@ -26,8 +26,8 @@ for i, result in enumerate(results):
         2: (0, 255, 0),  # Green
         3: (0, 0, 255),  # Blue
         4: (255, 100, 0),  # Red
-        5: (0, 255, 200),  # Green
-        6: (200, 0, 255),  # Blue
+        5: (0, 255, 100),  # Green
+        6: (100, 0, 255),  # Blue
         # Add more colors for more classes
     }
     color = color_map[classified[i]]
