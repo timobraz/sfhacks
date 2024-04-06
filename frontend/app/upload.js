@@ -26,6 +26,7 @@ function Upload() {
   const takePicture = async () => {
     if (cameraRef.current) {
       const { uri } = await cameraRef.current.takePictureAsync();
+
       await MediaLibrary.saveToLibraryAsync(uri);
       console.log("Picture saved to gallery!");
     }
