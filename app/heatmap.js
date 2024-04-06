@@ -1,6 +1,25 @@
 import { StyleSheet, View, Text } from "react-native";
 import React from "react";
-import MapView, { PROVIDER_GOOGLE } from "react-native-maps";
+import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps";
+
+const mockData = [
+  {
+    latlng: { latitude: 37.7749, longitude: -122.4194 },
+    title: "Trash Pickup Site 1",
+    description: "Collected 5 bags of trash here.",
+  },
+  {
+    latlng: { latitude: 37.7837, longitude: -122.409 },
+    title: "Trash Pickup Site 2",
+    description: "Collected 3 bags of trash here.",
+  },
+  {
+    latlng: { latitude: 37.768, longitude: -122.4376 },
+    title: "Trash Pickup Site 3",
+    description: "Collected 4 bags of trash here.",
+  },
+  // Add more mock data points as needed
+];
 
 const BlurredRedDot = () => {
   return (
@@ -12,6 +31,7 @@ const BlurredRedDot = () => {
         shadowOpacity: 0.99,
         shadowRadius: 20,
         elevation: 50,
+        opacity: 0.9,
       }}
     />
   );
@@ -26,11 +46,6 @@ const Heatmap = ({ navigation }) => {
       <Text className="font-[Koulen] text-[25px] text-center -mt-4">
         Fill The Map!
       </Text>
-      <View className="flex flex-row justify-center mt-5">
-        <BlurredRedDot />
-        <BlurredRedDot />
-        <BlurredRedDot />
-      </View>
       <View>
         <MapView
           style={styles.map}
@@ -42,7 +57,17 @@ const Heatmap = ({ navigation }) => {
             longitudeDelta: 0.15,
           }}
           showsUserLocation={true}
-        />
+        >
+          {mockData.map((marker, index) => (
+            <Marker
+              key={index}
+              coordinate={marker.latlng}
+              anchor={{ x: 0.5, y: 0.5 }}
+            >
+              <BlurredRedDot />
+            </Marker>
+          ))}
+        </MapView>
       </View>
     </View>
   );
