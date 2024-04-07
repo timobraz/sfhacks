@@ -2,11 +2,23 @@ import React, { useState, useEffect, useRef } from 'react';
 import Navbar from '../components/navbar';
 import { Camera } from 'expo-camera';
 import * as MediaLibrary from 'expo-media-library';
-import { View, Text, TouchableOpacity, StatusBar, Dimensions, Image, Pressable, SafeAreaView } from 'react-native';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  StatusBar,
+  Dimensions,
+  Image,
+  Modal,
+  Pressable,
+  SafeAreaView,
+} from 'react-native';
 const { width } = Dimensions.get('window');
 import axios from 'axios';
 import { router } from 'expo-router';
 function Upload() {
+  const [modalVisible, setModalVisible] = useState(true);
+
   const [hasPermission, setHasPermission] = useState(null);
   const cameraRef = useRef(null);
 
@@ -41,6 +53,7 @@ function Upload() {
   }
 
   const backImg = require('../assets/back-arrow.png');
+
   return (
     <>
       <SafeAreaView className="h-[2000px] w-full flex items-center flex-col bg-[#D7BCED] -mt-16">
@@ -83,8 +96,48 @@ function Upload() {
         </View>
       </SafeAreaView>
       <Navbar />
+      <FinalResultModal isVisible={modalVisible} setModalVisible={setModalVisible} />
     </>
   );
 }
+
+const FinalResultModal = ({ isVisible, setModalVisible }) => {
+  const handlePress = () => {
+    setModalVisible(false);
+    router.push('/feed');
+  };
+  return (
+    <>
+      <Modal animationType="slide" transparent={true} visible={isVisible}>
+        <View className="flex-1 justify-center items-center bg-black bg-opacity-20">
+          <View className="bg-white p-4 rounded-lg">
+            <Image
+              source={{ uri: 'https://picsum.photos/200' }}
+              width={380}
+              height={500}
+              borderRadius={10}
+              marginBottom={16}
+            />
+            <Text className="text-xl font-bold text-center mb-2">
+              You've earned <Text className="text-emerald-500">69</Text> points!
+            </Text>
+            <Text className="text-center text-lg">
+              Compost: <Text className="font-bold text-emerald-600">2</Text>
+            </Text>
+            <Text className="text-center text-lg">
+              Landfill: <Text className="font-bold text-amber-900">4</Text>
+            </Text>
+            <Text className="text-center  text-lg">
+              Recycling: <Text className="font-bold text-sky-400">6</Text>
+            </Text>
+            <Pressable onPress={handlePress} className="mt-6 bg-blue-500 py-2 px-4 rounded-lg">
+              <Text className="text-white text-lg font-bold text-center">Awesome!</Text>
+            </Pressable>
+          </View>
+        </View>
+      </Modal>
+    </>
+  );
+};
 
 export default Upload;
