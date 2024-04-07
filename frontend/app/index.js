@@ -1,14 +1,16 @@
 import { createStackNavigator } from '@react-navigation/stack';
 import React from 'react';
 
-import About from './about';
-import Upload from './upload';
-import Leaderboard from './leaderboard';
-import Heatmap from './heatmap';
-import Menu from './Menu'; // Assuming Menu is in the same directory
-import Feed from './feed';
-import Profile from './profile';
-import { useFonts } from 'expo-font';
+import About from "./about";
+import Upload from "./upload";
+import Leaderboard from "./leaderboard";
+import Heatmap from "./heatmap";
+import Menu from "./Menu"; // Assuming Menu is in the same directory
+import Feed from "./feed";
+import Profile from "./profile";
+import Navbar from "../components/navbar";
+import { useFonts } from "expo-font";
+
 
 const Stack = createStackNavigator();
 

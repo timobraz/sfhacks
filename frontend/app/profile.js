@@ -2,18 +2,24 @@ import { View, Text } from 'react-native';
 import React from 'react';
 import { Image } from 'expo-image';
 const blurhash =
-  '|rF?hV%2WCj[ayj[a|j[az_NaeWBj@ayfRayfQfQM{M|azj[azf6fQfQfQIpWXofj[ayj[j[fQayWCoeoeaya}j[ayfQa{oLj?j[WVj[ayayj[fQoff7azayj[ayj[j[ayofayayayj[fQj[ayayj[ayfjj[j[ayjuayj[';
+  "|rF?hV%2WCj[ayj[a|j[az_NaeWBj@ayfRayfQfQM{M|azj[azf6fQfQfQIpWXofj[ayj[j[fQayWCoeoeaya}j[ayfQa{oLj?j[WVj[ayayj[fQoff7azayj[ayj[j[ayofayayayj[fQj[ayayj[ayfjj[j[ayjuayj[";
+import Navbar from "../components/navbar";
+const Bar = ({ height, color }) => (
+  <View className={`w-5 rounded ${height} ${color}`} />
+);
 
-const Bar = ({ height, color }) => <View className={`w-5 rounded ${height} ${color}`} />;
 const Profile = ({ navigation }) => {
   const compostHeight = 'h-10';
   const landfillHeight = 'h-6';
   const recyclingHeight = 'h-12';
 
   return (
-    <View className="px-4 h-full bg-zinc-900">
-      <Text className="font-[Koulen] text-white text-[55px] tracking-[16px] text-center pt-5 ml-3">PROFILE</Text>
-      <View className="flex-row justify-center items-center">
+    <>
+    <View className="px-4">
+      <Text className="font-[Koulen] text-[55px] tracking-[16px] text-center pt-5 ml-3">
+        PROFILE
+      </Text>
+      <View className="flex-row justify-center">
         <Image
           source="https://picsum.photos/seed/696/3000/2000"
           placeholder={blurhash}
@@ -47,7 +53,11 @@ const Profile = ({ navigation }) => {
       <View className="h-[200px] w-full bg-zinc-100 rounded-2xl mt-1 p-4">
         <Text className="font-[Koulen] text-[25px] tracking-[5px]">WEEKLY</Text>
       </View>
+      
     </View>
+    <Navbar></Navbar>
+    </>
+
   );
 };
 
