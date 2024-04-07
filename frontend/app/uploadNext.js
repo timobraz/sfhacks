@@ -17,7 +17,6 @@ import {
 import { Image } from 'expo-image';
 import { router, useLocalSearchParams } from 'expo-router';
 import axios from 'axios';
-
 function UploadNext() {
   const { imageData } = useLocalSearchParams();
   const [description, setDescription] = useState('');

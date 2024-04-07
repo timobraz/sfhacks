@@ -25,8 +25,8 @@ const Profile = ({ navigation }) => {
 
   return (
     <>
-      <View className="px-4 h-[1000px] bg-[#202020]">
-        <Text className="font-[Koulen] text-white text-[55px] tracking-[16px] text-center pt-5 ml-3">PROFILE</Text>
+      <View className="px-4 h-[1000px] bg-[#202020] -mt-14">
+        <Text className="font-[Koulen] text-white text-[55px] tracking-[16px] text-center pt-[50px] ml-3">PROFILE</Text>
         <View className="flex-row justify-center items-center">
           <Image
             source="https://picsum.photos/seed/696/3000/2000"
