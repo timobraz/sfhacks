@@ -40,18 +40,21 @@ const Feed = () => {
                   </Image>
                   <View className="flex flex-col justify-between">
                     <View className="flex flex-row gap-2">
-                      <View className="rounded-full h-14 w-14 bg-slate-300"></View>
+                      <Image
+                        className="rounded-full h-14 w-14 bg-slate-300"
+                        source={require('../assets/timo.jpeg')}
+                      ></Image>
                       <View className="flex-col">
                         <View className="flex-row justify-between w-[270px]">
                           <Text className="font-[Koulen] text-2xl font-bold tracking-tighter color-[#202020] top-1">
-                            {post.user_id.username || 'No username'}
+                            {post?.user_id?.username || 'Temu'}
                           </Text>
                           <Text className="font-[Koulen] text-xl font-bold tracking-tighter text-green-500 top-1">
                             +{post.trashPoints || 0} Trash Points
                           </Text>
                         </View>
                         <Text className="font-[RobotoRegular] text-[17px] tracking-tighter color-[#858484] top-1 w-[314px] leading-[-5px]">
-                          {post.descriptions || 'No description available'}
+                          {post.description || 'No description available'}
                         </Text>
                       </View>
                     </View>

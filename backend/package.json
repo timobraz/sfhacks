@@ -17,7 +17,7 @@
     "express": "^4.17.1",
     "mongoose": "^8.3.0",
     "morgan": "^1.10.0",
-    "neurelo-sdk": "file:neurelo-sdk-typescript-cmt_c1de87.tgz",
+    "neurelo-sdk": "file:neurelo-sdk-typescript-cmt_a46a04.tgz",
     "openai": "^4.33.0",
     "typescript": "^5.3.3"
   },

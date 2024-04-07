@@ -80,17 +80,19 @@ app.post('/upload', async (req, res) => {
       Body: buff,
     }),
   );
-  const offset = Math.random() * 0.0001 - 0.00005;
-  Post.create({
-    user_id: new ObjectId('66118ed04fdd4c566623c5ef'),
+  const offset = Math.random() * 0.00015 - 0.00005;
+  const offset1 = Math.random() * 0.00015 - 0.00005;
+  PostsApiService.createOnePosts({
+    user_id: '66118ed04fdd4c566623c5ef',
     image: 'https://sfhacks-cleanasf.s3.amazonaws.com/' + key,
     trashPoints: resp?.data.points,
-    time: new Date(),
+    time: new Date().toISOString(),
     description: req.body.description,
     compost: resp?.data.class1,
     recycle: resp?.data.class2,
     landfill: resp?.data.class3,
-    location: [37.72649272510185 + offset, -122.48261983008864 + offset],
+    location: [37.72649272510185 + offset, -122.48261983008864 + offset1],
+    v: 0,
   });
   User.findByIdAndUpdate('66118ed04fdd4c566623c5ef', {
     $inc: {
@@ -117,17 +119,14 @@ export const openai = new OpenAI({
 
 app.get('/posts', async (req, res) => {
   try {
-    console.log('hit');
-    const res = await PostsApiService.findPosts();
-    console.log(res);
-    console.log(res.data.data);
+    const resp = await PostsApiService.findPosts();
+    resp.data.data.reverse();
+    console.log(resp.data.data);
+    return res.json(resp.data.data);
   } catch (error) {
     console.log(error);
-    return [];
+    return res.status(500).json({ error: 'Internal Server Error' });
   }
-  const posts = await Post.find().populate('user_id').sort({ time: -1 });
-
-  res.json(posts);
 });
 // Enable custom routes
 app.get('/pun', async (req, res) => {
