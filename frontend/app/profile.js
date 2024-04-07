@@ -11,27 +11,27 @@ const Profile = ({ navigation }) => {
   const recyclingHeight = 'h-12';
 
   return (
-    <View className="px-4">
-      <Text className="font-[Koulen] text-[55px] tracking-[16px] text-center pt-5 ml-3">PROFILE</Text>
-      <View className="flex-row justify-center">
+    <View className="px-4 bg-zinc-900">
+      <Text className="font-[Koulen] text-white text-[55px] tracking-[16px] text-center pt-5 ml-3">PROFILE</Text>
+      <View className="flex-row justify-center items-center">
         <Image
           source="https://picsum.photos/seed/696/3000/2000"
           placeholder={blurhash}
           contentFit="cover"
           transition={1000}
-          className="h-40 w-40 rounded-full"
+          className="h-24 w-24 rounded-full"
         />
-        <View className="flex-col justify-center  flex-start ml-3">
-          <Text className="font-[Koulen] text-[40px] -mb-4">ANDROID</Text>
-          <Text className="font-[Koulen] text-[25px] ">Andrew A</Text>
+        <View className="flex-col justify-center  flex-start ml-6">
+          <Text className="font-[Koulen] text-white text-[40px] -mb-4">ANDROID</Text>
+          <Text className="font-[Koulen] text-white text-[25px] ">Andrew A</Text>
         </View>
       </View>
-      <View className="h-[200px] w-full bg-slate-400 rounded-2xl mt-5 p-4">
-        <Text className="font-[Koulen] text-[25px] tracking-[5px]">MY STATS</Text>
+      <View className="h-[200px] w-full bg-zinc-100 rounded-3xl mt-5 p-4">
+        <Text className="font-[Koulen] text-[25px] tracking-[3px]">TOTAL STATS</Text>
         <View className="flex-row justify-around">
-          <Text className="font-[Koulen] text-[17px] text-center">COMPOST</Text>
-          <Text className="font-[Koulen] text-[17px] text-center">LANDFILL</Text>
-          <Text className="font-[Koulen] text-[17px] text-center">RECYLCING</Text>
+          <Text className="font-[Koulen] text-gray-500 text-[17px] text-center">COMPOST</Text>
+          <Text className="font-[Koulen] text-gray-500 text-[17px] text-center">LANDFILL</Text>
+          <Text className="font-[Koulen] text-gray-500 text-[17px] text-center">RECYLCING</Text>
         </View>
         <View className="flex-row justify-around -mt-2">
           <Text className="font-[Koulen] text-[17px] text-center">38</Text>
@@ -39,12 +39,12 @@ const Profile = ({ navigation }) => {
           <Text className="font-[Koulen] text-[17px] text-center">76</Text>
         </View>
         <View className="flex-row justify-around mt-4 items-end w-full">
-          <Bar height={compostHeight} color="bg-green-500" />
-          <Bar height={landfillHeight} color="bg-red-500" />
-          <Bar height={recyclingHeight} color="bg-blue-500" />
+          <Bar height={compostHeight} color="bg-green-400" />
+          <Bar height={landfillHeight} color="bg-orange-800" />
+          <Bar height={recyclingHeight} color="bg-sky-200" />
         </View>
       </View>
-      <View className="h-[200px] w-full bg-slate-400 rounded-2xl mt-1 p-4">
+      <View className="h-[200px] w-full bg-zinc-100 rounded-2xl mt-1 p-4">
         <Text className="font-[Koulen] text-[25px] tracking-[5px]">WEEKLY</Text>
       </View>
     </View>
