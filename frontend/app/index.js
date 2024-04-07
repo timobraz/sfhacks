@@ -24,7 +24,7 @@ const App = () => {
   }
   return (
     <Stack.Navigator
-      initialRouteName="Profile"
+      initialRouteName="Feed"
       independent={true}
       screenOptions={{
         headerBackTitle: 'Back',
