@@ -7,6 +7,7 @@ const blurhash =
 
 const Feed = () => {
   return (
+    <>
     <View className="flex flex-1">
       <View>
         <Text className="font-[Koulen] text-[55px] tracking-[16px] text-center pt-5 ml-3">
@@ -49,8 +50,10 @@ const Feed = () => {
           ))}
         </ScrollView>
       </View>
-      <Navbar />
+      
     </View>
+    <Navbar />
+    </>
   );
 };
 

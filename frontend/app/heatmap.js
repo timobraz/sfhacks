@@ -38,7 +38,7 @@ const BlurredRedDot = () => {
 };
 const Heatmap = ({ navigation }) => {
   return (
-    <View className="px-4">
+    <View className="px-4 bg-[#CBD87D]">
       <Text className="font-[Koulen] text-[55px] tracking-[16px] text-center pt-5 ml-3">Heatmap</Text>
       <Text className="font-[Koulen] text-[25px] text-center -mt-4">Fill The Map!</Text>
       <View>
