@@ -35,3 +35,4 @@ yarn-error.*
 *.tsbuildinfo
 yolo*
 node_modules
+.env

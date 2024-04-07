@@ -22,7 +22,7 @@ const App = () => {
   }
   return (
     <Stack.Navigator
-      initialRouteName="Profile"
+      initialRouteName="Upload"
       independent={true}
       screenOptions={{
         headerBackTitle: 'Back',
