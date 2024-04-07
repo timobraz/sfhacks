@@ -47,13 +47,13 @@ const Feed = () => {
                       <View className="flex-col">
                         <View className="flex-row justify-between w-[270px]">
                           <Text className="font-[Koulen] text-2xl font-bold tracking-tighter color-[#202020] top-1">
-                            {post?.user_id?.username || 'Temu'}
+                            {post.user_id.username || 'Timo'}
                           </Text>
                           <Text className="font-[Koulen] text-xl font-bold tracking-tighter text-green-500 top-1">
                             +{post.trashPoints || 0} Trash Points
                           </Text>
                         </View>
-                        <Text className="font-[RobotoRegular] text-[17px] tracking-tighter color-[#858484] top-1 w-[314px] leading-[-5px]">
+                        <Text className="font-[RobotoRegular] text-[17px] tracking-tighter color-[#858484] top-1 w-[270px] leading-[-5px]">
                           {post.description || 'No description available'}
                         </Text>
                       </View>

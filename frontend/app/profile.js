@@ -61,19 +61,19 @@ const Profile = ({ navigation }) => {
             <Bar height={recyclingHeight} color="bg-sky-200" />
           </View>
         </View>
-        <View className="h-[200px] w-full bg-zinc-100 rounded-2xl mt-1 p-4">
+        <View className="h-auto w-full bg-zinc-100 rounded-2xl mt-1 p-4">
           <Text className="font-[Koulen] text-[25px] tracking-[5px]">GOALS:</Text>
           <Text className="font-[Koulen] text-[15px] color-[#858484]">
-            Pick up <Text className="text-green-500">23</Text> more pieces of{' '}
+            Pick up <Text className="text-green-500">23</Text> more{' '}
             <Text className="text-green-500">compost </Text>
             by the end of the week
           </Text>
           <Text className="font-[Koulen] text-[15px] color-[#858484]">
-            Pick up <Text className="text-orange-800">15</Text> more pieces of{' '}
+            Pick up <Text className="text-orange-800">15</Text> more{' '}
             <Text className="text-orange-800">landfill</Text> by the end of the week
           </Text>
           <Text className="font-[Koulen] text-[15px] color-[#858484]">
-            Pick up <Text className="text-sky-400">53</Text> more pieces of{' '}
+            Pick up <Text className="text-sky-400">53</Text> more{' '}
             <Text className="text-sky-400">recycling</Text> by the end of the week
           </Text>
         </View>
