@@ -104,6 +104,11 @@ app.post('/upload', async (req, res) => {
     class3: resp?.data.class3,
   });
 });
+import OpenAI from 'openai';
+
+export const openai = new OpenAI({
+  apiKey: process.env['OPENAI_API_KEY'],
+});
 
 app.get('/posts', async (req, res) => {
   const posts = await Post.find().populate('user_id').sort({ time: -1 });
@@ -111,6 +116,25 @@ app.get('/posts', async (req, res) => {
   res.json(posts);
 });
 // Enable custom routes
+app.get('/pun', async (req, res) => {
+  const caption = req.query.caption;
+  const resp = await openai.chat.completions.create({
+    messages: [
+      {
+        role: 'system',
+        content: 'You are a chatbot.',
+      },
+      {
+        role: 'user',
+        content:
+          'act like a caption generator for an app where you can post where you picked up trash. Add a lot of puns, be less that 100 characters. generate one. It should be comical and coming from first point of view. Here is the caption: ' +
+          caption,
+      },
+    ],
+    model: 'gpt-4',
+  });
+  res.json({ pun: resp.choices[0].message.content });
+});
 
 /**
  * Error Handler
