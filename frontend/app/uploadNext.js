@@ -14,6 +14,7 @@ import {
   TouchableWithoutFeedback,
   ActivityIndicator,
 } from 'react-native';
+import { FontAwesome6 } from '@expo/vector-icons';
 import { Image } from 'expo-image';
 import { router, useLocalSearchParams } from 'expo-router';
 import axios from 'axios';
@@ -53,10 +54,10 @@ function UploadNext() {
         <View className="flex-row gap-5 items-center px-11 pb-10 h-auto mt-2">
           <View className="h-full w-full bg-[#E9E9E9] rounded-xl flex flex-col items-center px-5">
             <Text className="text-2xl font-[Koulen] pt-6 color-[#2F2F2F]">Describe what you did...</Text>
-            <View className="w-full bg-[#D9D9D9]">
+            <View className="w-full bg-[#D9D9D9] flex flex-row-reverse justify-around px-4 p-3">
               <TextInput
-                className="w-full h-[80px] font-[RobotoMedium] p-2"
-                placeholder="I went to the park and"
+                className="w-full h-[70px] font-[RobotoMedium]"
+                placeholder="      Generate description with AI?"
                 multiline={true}
                 numberOfLines={4}
                 onChange={(e) => {
@@ -64,11 +65,13 @@ function UploadNext() {
                 }}
                 value={description}
               ></TextInput>
+              <FontAwesome6 name="wand-magic-sparkles" size={18} color="purple" onPress={console.log('asdf')}/>
             </View>
+            
           </View>
         </View>
 
-        <View className="flex-row gap-5 items-center px-8 pl-[54px] h-[450px]">
+        <View className="flex-row gap-5 items-center px-8 pl-[54px] h-[440px]">
           <DismissKeyboard>
             <Image
               source={{ uri: `data:image/jpeg;base64,${imageData}` }}
