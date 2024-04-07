@@ -32,6 +32,15 @@ function UploadNext() {
   const [data, setData] = useState({});
   const image = require('../assets/vectorThing.png');
 
+  const magicPress = async () => {
+    try {
+      const res = await axios.get('https://concise-hookworm-utterly.ngrok-free.app/pun?caption=test');
+      setDescription("      "+ res.data.pun.replaceAll("\"", ""));
+    } catch (error) {
+      console.error(error);
+    }}
+
+
   const pressed = async () => {
     try {
       const res = await axios.post('https://concise-hookworm-utterly.ngrok-free.app/upload', {
@@ -68,7 +77,7 @@ function UploadNext() {
                 }}
                 value={description}
               ></TextInput>
-              <FontAwesome6 name="wand-magic-sparkles" size={18} color="purple" onPress={console.log('asdf')}/>
+              <FontAwesome6 name="wand-magic-sparkles" size={18} color="purple" onPress={magicPress}/>
             </View>
             
           </View>
