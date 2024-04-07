@@ -8,11 +8,14 @@ import {
   TouchableOpacity,
   StatusBar,
   Dimensions,
+  Image,
+  Pressable
 } from "react-native";
+
 
 const { width } = Dimensions.get("window");
 
-function Upload() {
+function Upload({ navigation }) {
   const [hasPermission, setHasPermission] = useState(null);
   const cameraRef = useRef(null);
 
@@ -38,9 +41,18 @@ function Upload() {
   if (hasPermission === false) {
     return <Text>No access to camera</Text>;
   }
+
+  const backImg = require('../assets/back-arrow.png');
   return (
     <View className="h-full w-full flex items-center flex-col bg-[#D7BCED]">
-      <View>
+      <View className="flex-row gap-5 items-center">
+        <Pressable onPress={()=>navigation.navigate('Menu')}>
+<Image 
+        source={backImg}
+        className="w-10 h-10"
+        />
+        </Pressable>
+        
         <Text className="mt-7 text-[45px] tracking-[10px] text-center font-[Koulen]">
           Upload
         </Text>

@@ -3,7 +3,7 @@ import React from "react";
 import { Image } from "expo-image";
 const blurhash =
   "|rF?hV%2WCj[ayj[a|j[az_NaeWBj@ayfRayfQfQM{M|azj[azf6fQfQfQIpWXofj[ayj[j[fQayWCoeoeaya}j[ayfQa{oLj?j[WVj[ayayj[fQoff7azayj[ayj[j[ayofayayayj[fQj[ayayj[ayfjj[j[ayjuayj[";
-
+import Navbar from "../components/navbar";
 const Bar = ({ height, color }) => (
   <View className={`w-5 rounded ${height} ${color}`} />
 );
@@ -13,6 +13,7 @@ const Profile = ({ navigation }) => {
   const recyclingHeight = "h-12";
 
   return (
+    <>
     <View className="px-4">
       <Text className="font-[Koulen] text-[55px] tracking-[16px] text-center pt-5 ml-3">
         PROFILE
@@ -57,7 +58,11 @@ const Profile = ({ navigation }) => {
       <View className="h-[200px] w-full bg-slate-400 rounded-2xl mt-1 p-4">
         <Text className="font-[Koulen] text-[25px] tracking-[5px]">WEEKLY</Text>
       </View>
+      
     </View>
+    <Navbar></Navbar>
+    </>
+
   );
 };
 
