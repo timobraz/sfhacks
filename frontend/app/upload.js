@@ -76,7 +76,7 @@ function Upload() {
                   width: 60,
                   marginBottom: 20,
                 }}
-                onPress={takePicture}
+                onPress={() => {router.push('/uploadNext'); takePicture();}}
               />
             </View>
           </Camera>
