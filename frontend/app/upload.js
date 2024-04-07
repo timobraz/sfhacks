@@ -6,6 +6,7 @@ import * as MediaLibrary from 'expo-media-library';
 import { View, Text, TouchableOpacity, StatusBar, Dimensions, Image, Pressable } from 'react-native';
 const { width } = Dimensions.get('window');
 import axios from 'axios';
+import { router } from 'expo-router';
 function Upload() {
   const [hasPermission, setHasPermission] = useState(null);
   const cameraRef = useRef(null);
@@ -37,11 +38,11 @@ function Upload() {
   return (
     <View className="h-full w-full flex items-center flex-col bg-[#D7BCED]">
       <View className="flex-row gap-5 items-center">
-        <Pressable onPress={()=>navigation.navigate('Menu')}>
-<Image 
-        source={backImg}
-        className="w-10 h-10"
-        />
+        <Pressable onPress={()=>router.push('/Menu')}>
+          <Image 
+          source={backImg}
+          className="w-10 h-10"
+          />
         </Pressable>
         
         <Text className="mt-7 text-[45px] tracking-[10px] text-center font-[Koulen]">

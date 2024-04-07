@@ -1,6 +1,7 @@
 import { View, Text } from 'react-native';
 import React from 'react';
 import { Image } from 'expo-image';
+import Navbar from '../components/navbar';
 const blurhash =
   '|rF?hV%2WCj[ayj[a|j[az_NaeWBj@ayfRayfQfQM{M|azj[azf6fQfQfQIpWXofj[ayj[j[fQayWCoeoeaya}j[ayfQa{oLj?j[WVj[ayayj[fQoff7azayj[ayj[j[ayofayayayj[fQj[ayayj[ayfjj[j[ayjuayj[';
 
@@ -11,6 +12,7 @@ const Profile = ({ navigation }) => {
   const recyclingHeight = 'h-12';
 
   return (
+    <>
     <View className="px-4 h-full bg-zinc-900">
       <Text className="font-[Koulen] text-white text-[55px] tracking-[16px] text-center pt-5 ml-3">PROFILE</Text>
       <View className="flex-row justify-center items-center">
@@ -48,6 +50,8 @@ const Profile = ({ navigation }) => {
         <Text className="font-[Koulen] text-[25px] tracking-[5px]">WEEKLY</Text>
       </View>
     </View>
+    <Navbar />
+    </>
   );
 };
 
