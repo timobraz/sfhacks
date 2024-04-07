@@ -17,6 +17,11 @@ import {
 import { Image } from 'expo-image';
 import { router, useLocalSearchParams } from 'expo-router';
 import axios from 'axios';
+
+const DismissKeyboard = ({ children }) => (
+  <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>{children}</TouchableWithoutFeedback>
+);
+
 function UploadNext() {
   const { imageData } = useLocalSearchParams();
   const [description, setDescription] = useState('');
@@ -41,9 +46,7 @@ function UploadNext() {
       console.error(error);
     }
   };
-  const DismissKeyboard = ({ children }) => (
-    <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>{children}</TouchableWithoutFeedback>
-  );
+
   return (
     <>
       <SafeAreaView

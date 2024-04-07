@@ -91,8 +91,8 @@ app.post('/upload', async (req, res) => {
     $inc: {
       trashPoints: resp?.data.points,
       compost: resp?.data.class1,
-      recycle: resp?.data.class2,
-      landfill: resp?.data.class3,
+      recycle: resp?.data.class3,
+      landfill: resp?.data.class2,
     },
   }).exec();
   res.json({

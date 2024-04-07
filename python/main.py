@@ -22,6 +22,7 @@ def generate_prediction(image):
 
     # Convert results to list
     labels = results[0].names
+    print(labels)
     classified = [int(x) for x in results[0].boxes.cpu().cls.tolist()]
     results = results[0].boxes.cpu().xywh.tolist()
     class1_total = 0
@@ -59,10 +60,10 @@ def generate_prediction(image):
         )
     image = cv2.rotate(image_np, cv2.ROTATE_90_CLOCKWISE)
     print(results)
-    totals_added = class1_total * 1000 + class2_total * 200 + class3_total * 150
+    totals_added = class1_total + class2_total + class3_total
     cv2.imwrite("output.jpg", image)
     return {
-        "points": totals_added,
+        "points": totals_added * 100,
         "class1": class1_total,
         "class2": class2_total,
         "class3": class3_total,
