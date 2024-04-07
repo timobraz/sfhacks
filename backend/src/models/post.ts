@@ -7,6 +7,7 @@ export interface Post {
   descriptions: string;
   time: Date;
   location: number[];
+  description: string;
 }
 
 const PostSchema = new mongoose.Schema({
@@ -14,6 +15,7 @@ const PostSchema = new mongoose.Schema({
   image: { type: String, required: true },
   trashPoints: { type: Number, required: true },
   time: { type: Date, required: true },
+  description: { type: String, required: false },
   location: { type: [Number], required: true },
   recycle: { type: Number, required: true },
   compost: { type: Number, required: true },

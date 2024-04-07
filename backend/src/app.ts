@@ -3,9 +3,12 @@
  * @module
  */
 
+import dotenv from 'dotenv-flow';
+
+dotenv.config();
+
 import express from 'express';
 import logger from 'morgan';
-import dotenv from 'dotenv-flow';
 import { connect } from './utils/conn';
 import ngrok from '@ngrok/ngrok';
 import User from './models/user';
@@ -14,9 +17,9 @@ import bodyParser from 'body-parser';
 import axios from 'axios';
 import fs from 'fs';
 import { PutObjectCommand, S3Client } from '@aws-sdk/client-s3';
+import { Posts, PostsApiService, Users, UsersApiService } from 'neurelo-sdk';
 import { ObjectId } from 'mongodb';
 // load env
-dotenv.config();
 
 // Custom Routes
 
@@ -54,8 +57,9 @@ app.get('/', (req, res) => {
 });
 
 app.get('/user', async (req, res) => {
-  const user = await User.findById('66118ed04fdd4c566623c5ef');
-  res.json(user);
+  const user = await UsersApiService.findUsersById('66118ed04fdd4c566623c5ef');
+  console.log(user);
+  res.json(user.data.data);
 });
 
 app.post('/upload', async (req, res) => {
@@ -82,6 +86,7 @@ app.post('/upload', async (req, res) => {
     image: 'https://sfhacks-cleanasf.s3.amazonaws.com/' + key,
     trashPoints: resp?.data.points,
     time: new Date(),
+    description: req.body.description,
     compost: resp?.data.class1,
     recycle: resp?.data.class2,
     landfill: resp?.data.class3,
@@ -111,6 +116,15 @@ export const openai = new OpenAI({
 });
 
 app.get('/posts', async (req, res) => {
+  try {
+    console.log('hit');
+    const res = await PostsApiService.findPosts();
+    console.log(res);
+    console.log(res.data.data);
+  } catch (error) {
+    console.log(error);
+    return [];
+  }
   const posts = await Post.find().populate('user_id').sort({ time: -1 });
 
   res.json(posts);
