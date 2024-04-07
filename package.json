@@ -2,7 +2,7 @@
   "name": "sfhacks",
   "version": "0.1.0",
   "scripts": {
-    "dev": "concurrently -n backend,frontend -c blue,green \"cd backend && npm run dev\" \"cd frontend && npm run ios\"",
+    "dev": "concurrently -n backend,frontend,fast -c blue,green,grey \"cd backend && npm run dev\" \"cd frontend && npx expo start --tunnel \" \"cd python && python3 main.py\"",
     "postinstall": "cd backend && npm install && cd ../frontend && npm install",
     "format": "prettier --write **/*.{css,scss,cjs,js,ts,tsx,yml,json,html}",
     "lint": "prettier **/*.{css,scss,cjs,js,ts,tsx,yml,json,html} --check && cd site && npm run lint && cd ../api && npm run lint"
