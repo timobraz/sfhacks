@@ -8,6 +8,7 @@ import Heatmap from "./heatmap";
 import Menu from "./Menu"; // Assuming Menu is in the same directory
 import Feed from "./feed";
 import Profile from "./profile";
+import Navbar from "../components/navbar";
 import { useFonts } from "expo-font";
 
 const Stack = createStackNavigator();
@@ -22,32 +23,19 @@ const App = () => {
   }
   return (
     <Stack.Navigator
+      presentation="transparentModal"
       initialRouteName="Menu"
       independent={true}
-      screenOptions={{
-        headerBackTitle: "Back",
-        headerBackTitleStyle: {
-          color: "black",
-          fontSize: 20,
-          fontWeight: "bold",
-        },
-        headerTitleStyle: {
-          fontSize: 20,
-          fontWeight: "800",
-        },
-      }}
+      
     >
       <Stack.Screen name="Menu" component={Menu} options={{ headerShown: false }}/>
-      <Stack.Screen name="About" component={About} />
-      <Stack.Screen name="Upload" component={Upload} />
-      <Stack.Screen name="Leaderboard" component={Leaderboard} />
-      <Stack.Screen name="Heatmap" component={Heatmap} />
-      <Stack.Screen name="Profile" component={Profile} />
-      <Stack.Screen
-        name="Feed"
-        component={Feed}
-        options={{ headerShown: false }}
-      />
+      <Stack.Screen name="About" component={About} options={{ headerShown: false }}/>
+      <Stack.Screen name="Upload" component={Upload} options={{ headerShown: false }}/>
+      <Stack.Screen name="Leaderboard" component={Leaderboard} options={{ headerShown: false }}/>
+      <Stack.Screen name="Heatmap" component={Heatmap} options={{ headerShown: false }}/>
+      <Stack.Screen name="Profile" component={Profile} options={{ headerShown: false }}/>
+      <Stack.Screen name="Feed" component={Feed} options={{ headerShown: false }}/>
+      <Stack.Screen name="Navbar" component={Navbar} options={{ headerShown: false }}/>
     </Stack.Navigator>
   );
 };
