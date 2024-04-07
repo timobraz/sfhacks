@@ -4,6 +4,9 @@ module.exports = {
     extend: {
       fontFamily: {
         Koulen: ["Koulen"],
+        RobotoLight: ["RobotLight"],
+        RobotoMedium: ["RobotoMedium"],
+        RobotoRegular: ["RobotoRegular"],
       },
     },
   },

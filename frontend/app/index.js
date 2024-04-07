@@ -1,4 +1,3 @@
-import { createStackNavigator } from '@react-navigation/stack';
 import React from 'react';
 
 import About from "./about";
@@ -10,43 +9,30 @@ import Feed from "./feed";
 import Profile from "./profile";
 import Navbar from "../components/navbar";
 import { useFonts } from "expo-font";
+import { View } from "react-native";
 
 
-const Stack = createStackNavigator();
 
 const App = () => {
   const [fontsLoaded] = useFonts({
     Koulen: require('../assets/fonts/Koulen.ttf'),
   });
+  const [fontsLoadedTwo] = useFonts({
+    RobotoLight: require('../assets/fonts/RobotoCondensed-Light.ttf'),
+  });
+  const [fontsLoadedThree] = useFonts({
+    RobotoMedium: require('../assets/fonts/RobotoCondensed-Medium.ttf'),
+  });
+  const [fontsLoadedFour] = useFonts({
+    RobotoRegular: require('../assets/fonts/RobotoCondensed-Regular.ttf'),
+  });
 
-  if (!fontsLoaded) {
+  if (!fontsLoaded && !fontsLoadedTwo) {
     return null;
   }
   return (
-    <Stack.Navigator
-      initialRouteName="Menu"
-      independent={true}
-      screenOptions={{
-        headerBackTitle: 'Back',
-        headerBackTitleStyle: {
-          color: 'black',
-          fontSize: 20,
-          fontWeight: 'bold',
-        },
-        headerTitleStyle: {
-          fontSize: 20,
-          fontWeight: '800',
-        },
-      }}
-    >
-      <Stack.Screen name="Menu" component={Menu} options={{ headerShown: false }} />
-      <Stack.Screen name="About" component={About} />
-      <Stack.Screen name="Upload" component={Upload} />
-      <Stack.Screen name="Leaderboard" component={Leaderboard} />
-      <Stack.Screen name="Heatmap" component={Heatmap} />
-      <Stack.Screen name="Profile" component={Profile} />
-      <Stack.Screen name="Feed" component={Feed} options={{ headerShown: false }} />
-    </Stack.Navigator>
+    <Menu></Menu>
+
   );
 };
 

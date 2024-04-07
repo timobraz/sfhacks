@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import Navbar from '../components/navbar';
 import { Camera } from 'expo-camera';
 import * as MediaLibrary from 'expo-media-library';
-import { View, Text, TouchableOpacity, StatusBar, Dimensions, Image, Pressable } from 'react-native';
+import { View, Text, TouchableOpacity, StatusBar, Dimensions, Image, Pressable, SafeAreaView } from 'react-native';
 const { width } = Dimensions.get('window');
 import axios from 'axios';
 import { router } from 'expo-router';
@@ -36,16 +36,12 @@ function Upload() {
 
   const backImg = require('../assets/back-arrow.png');
   return (
-    <View className="h-full w-full flex items-center flex-col bg-[#D7BCED]">
+    <>
+    <SafeAreaView className="h-[2000px] w-full flex items-center flex-col bg-[#D7BCED] -mt-16">
       <View className="flex-row gap-5 items-center">
-        <Pressable onPress={()=>router.push('/Menu')}>
-          <Image 
-          source={backImg}
-          className="w-10 h-10"
-          />
-        </Pressable>
         
-        <Text className="mt-7 text-[45px] tracking-[10px] text-center font-[Koulen]">
+        
+        <Text className="mt-7 text-[55px] tracking-[10px] text-center font-[Koulen]">
           Upload
         </Text>
 
@@ -84,8 +80,10 @@ function Upload() {
           </View>
         </Camera>
       </View>
-      <Navbar />
-    </View>
+      
+    </SafeAreaView>
+    <Navbar />
+    </>
   );
 }
 

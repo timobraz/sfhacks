@@ -6,7 +6,7 @@ import { router } from "expo-router";
 
 export default function Navbar({navigation}) {
   return (
-    <View className="absolute z-[999] bottom-5 left-0 right-0 shadow-2xl bg-zinc-100 mx-4 rounded-full p-4 flex-row justify-between items-center">
+    <View className="absolute z-[999] bottom-5 left-0 right-0 shadow-2xl bg-zinc-100 mx-4 rounded-full p-4 flex-row justify-between items-center border-4">
       <TouchableOpacity onPress={() => router.push("/feed")}>
         <AntDesign name="home" size={24} color="black" />
       </TouchableOpacity>
