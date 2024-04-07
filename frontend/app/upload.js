@@ -46,8 +46,6 @@ function Upload() {
       <SafeAreaView className="h-[2000px] w-full flex items-center flex-col bg-[#D7BCED] -mt-16">
         <View className="flex-row gap-5 items-center">
           <Text className="mt-7 text-[55px] tracking-[10px] text-center font-[Koulen]">Upload</Text>
-
-          <Text className="mt-7 text-[45px] tracking-[10px] text-center font-[Koulen]">Upload</Text>
         </View>
 
         <View
