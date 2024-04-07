@@ -8,9 +8,9 @@ const blurhash =
 
 const Bar = ({ height, color }) => <View className={`w-5 rounded ${height} ${color}`} />;
 const Profile = ({ navigation }) => {
-  const compostHeight = 'h-10';
-  const landfillHeight = 'h-6';
-  const recyclingHeight = 'h-12';
+  const compostHeight = 'h-6';
+  const landfillHeight = 'h-12';
+  const recyclingHeight = 'h-10';
   const [user, setUser] = useState({ compost: 0, landfill: 0, recycle: 0 });
 
   useEffect(() => {
@@ -41,11 +41,14 @@ const Profile = ({ navigation }) => {
           </View>
         </View>
         <View className="h-[200px] w-full bg-zinc-100 rounded-3xl mt-5 p-4">
-          <Text className="font-[Koulen] text-[25px] tracking-[3px]">TOTAL STATS</Text>
+          <Text className="font-[Koulen] text-[25px] tracking-[3px]">
+            TOTAL STATS -{' '}
+            <Text className="text-green-500">{user.compost * 100 + user.landfill * 100 + user.recycle * 100} pts</Text>
+          </Text>
           <View className="flex-row justify-around">
             <Text className="font-[Koulen] text-gray-500 text-[17px] text-center">COMPOST</Text>
             <Text className="font-[Koulen] text-gray-500 text-[17px] text-center">LANDFILL</Text>
-            <Text className="font-[Koulen] text-gray-500 text-[17px] text-center">RECYLCING</Text>
+            <Text className="font-[Koulen] text-gray-500 text-[17px] text-center">RECYCLING</Text>
           </View>
           <View className="flex-row justify-around -mt-2">
             <Text className="font-[Koulen] text-[17px] text-center">{user.compost}</Text>
@@ -59,7 +62,20 @@ const Profile = ({ navigation }) => {
           </View>
         </View>
         <View className="h-[200px] w-full bg-zinc-100 rounded-2xl mt-1 p-4">
-          <Text className="font-[Koulen] text-[25px] tracking-[5px]">WEEKLY</Text>
+          <Text className="font-[Koulen] text-[25px] tracking-[5px]">GOALS:</Text>
+          <Text className="font-[Koulen] text-[15px] color-[#858484]">
+            Pick up <Text className="text-green-500">23</Text> more pieces of{' '}
+            <Text className="text-green-500">compost </Text>
+            by the end of the week
+          </Text>
+          <Text className="font-[Koulen] text-[15px] color-[#858484]">
+            Pick up <Text className="text-orange-800">15</Text> more pieces of{' '}
+            <Text className="text-orange-800">landfill</Text> by the end of the week
+          </Text>
+          <Text className="font-[Koulen] text-[15px] color-[#858484]">
+            Pick up <Text className="text-sky-400">53</Text> more pieces of{' '}
+            <Text className="text-sky-400">recycling</Text> by the end of the week
+          </Text>
         </View>
       </View>
       <Navbar />
