@@ -32,16 +32,11 @@ function Upload() {
   const takePicture = async () => {
     if (cameraRef.current) {
       const { base64 } = await cameraRef.current.takePictureAsync((options = { base64: true, quality: 0.1 }));
-      const resp = await axios
-        .post('https://concise-hookworm-utterly.ngrok-free.app/upload', {
-          image: base64,
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-      if (resp) {
-        console.log(resp.data);
-      }
+      router.push({
+        pathname: '/uploadNext',
+        params: { imageData: base64 },
+      
+      })
     }
   };
 
@@ -64,7 +59,7 @@ function Upload() {
         <View
           style={{
             width: width - 40,
-            height: 485,
+            height: 650,
             marginHorizontal: 20,
             marginTop: 20,
             borderRadius: 20,
@@ -89,55 +84,16 @@ function Upload() {
                   width: 60,
                   marginBottom: 20,
                 }}
-                onPress={() => {router.push('/uploadNext'); takePicture();}}
+                onPress={takePicture}
               />
             </View>
           </Camera>
         </View>
       </SafeAreaView>
       <Navbar />
-      <FinalResultModal isVisible={modalVisible} setModalVisible={setModalVisible} />
     </>
   );
 }
 
-const FinalResultModal = ({ isVisible, setModalVisible }) => {
-  const handlePress = () => {
-    setModalVisible(false);
-    router.push('/feed');
-  };
-  return (
-    <>
-      <Modal animationType="slide" transparent={true} visible={isVisible}>
-        <View className="flex-1 justify-center items-center bg-black bg-opacity-20">
-          <View className="bg-white p-4 rounded-lg">
-            <Image
-              source={{ uri: 'https://picsum.photos/200' }}
-              width={380}
-              height={500}
-              borderRadius={10}
-              marginBottom={16}
-            />
-            <Text className="text-xl font-bold text-center mb-2">
-              You've earned <Text className="text-emerald-500">69</Text> points!
-            </Text>
-            <Text className="text-center text-lg">
-              Compost: <Text className="font-bold text-emerald-600">2</Text>
-            </Text>
-            <Text className="text-center text-lg">
-              Landfill: <Text className="font-bold text-amber-900">4</Text>
-            </Text>
-            <Text className="text-center  text-lg">
-              Recycling: <Text className="font-bold text-sky-400">6</Text>
-            </Text>
-            <Pressable onPress={handlePress} className="mt-6 bg-blue-500 py-2 px-4 rounded-lg">
-              <Text className="text-white text-lg font-bold text-center">Awesome!</Text>
-            </Pressable>
-          </View>
-        </View>
-      </Modal>
-    </>
-  );
-};
 
 export default Upload;
