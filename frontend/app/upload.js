@@ -59,7 +59,7 @@ function Upload() {
         <View
           style={{
             width: width - 40,
-            height: 650,
+            height: 600,
             marginHorizontal: 20,
             marginTop: 20,
             borderRadius: 20,

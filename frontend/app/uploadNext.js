@@ -1,14 +1,14 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import Navbar from '../components/navbar';
-import { View, Text, TouchableOpacity, StatusBar, Dimensions, Pressable, SafeAreaView, TextInput, Modal} from 'react-native';
+import { View, Text, TouchableOpacity, StatusBar, Dimensions, Pressable, SafeAreaView, TextInput, Modal, Keyboard,  TouchableWithoutFeedback} from 'react-native';
 import { Image } from 'expo-image';
 import { router, useLocalSearchParams } from 'expo-router';
 import axios from 'axios';
 
 function UploadNext() {
   const {imageData} = useLocalSearchParams();
-  const [description, setDescription] = useState('');
+  const [description, setDescription] = useState("");
   const blurhash =
   "|rF?hV%2WCj[ayj[a|j[az_NaeWBj@ayfRayfQfQM{M|azj[azf6fQfQfQIpWXofj[ayj[j[fQayWCoeoeaya}j[ayfQa{oLj?j[WVj[ayayj[fQoff7azayj[ayj[j[ayofayayayj[fQj[ayayj[ayfjj[j[ayjuayj[";
 const [modalVisible, setModalVisible] = useState(false);
@@ -31,41 +31,53 @@ const [modalVisible, setModalVisible] = useState(false);
       console.error(error);
     }
   }
+  const DismissKeyboard = ({ children }) => (
+    <TouchableWithoutFeedback 
+    onPress={() => Keyboard.dismiss()}>{children}
+    </TouchableWithoutFeedback>
+    );
   return (
     <>
-    <SafeAreaView className="h-[2000px] w-full flex items-center flex-col bg-[#D7BCED] -mt-16">
-      <View className="flex-row gap-5 items-center p-7 h-[500px]">
-        <Image
+    <SafeAreaView onPress={() => Keyboard.dismiss()} className="h-[2000px] w-full flex items-center flex-col bg-[#D7BCED] -mt-16">
+      
+
+      <View className="flex-row gap-5 items-center px-11 pb-10 h-auto mt-2">
+        <View className="h-full w-full bg-[#E9E9E9] rounded-xl flex flex-col items-center px-5">
+          <Text className="text-2xl font-[Koulen] pt-6 color-[#2F2F2F]">
+            Describe what you did...
+          </Text>
+          <View className="w-full bg-[#D9D9D9]">
+            <TextInput className="w-full h-[80px] font-[RobotoMedium] p-2" placeholder="I went to the park and"
+                      multiline = {true}
+                      numberOfLines = {4} 
+                      onChange={(e) => {setDescription(e.nativeEvent.text)}}
+                      value={description}>
+
+            </TextInput>
+          </View>
+        </View>
+        
+
+      </View>
+      
+      <View className="flex-row gap-5 items-center px-8 pl-[54px] h-[450px]">
+              <DismissKeyboard>
+              <Image
                 source={{ uri: `data:image/jpeg;base64,${imageData}`}}
                 placeholder={blurhash}
                 contentFit="cover"
                 transition={1000}
                 className="w-full h-full rounded-lg"
               >
-              </Image>
-      </View>
-      <View className="flex-row gap-5 items-center px-7 py-2 h-auto">
-        <View className="h-full w-full bg-[#E9E9E9] rounded-xl flex flex-col items-center px-5">
-          <Text className="text-2xl font-[Koulen] pt-6 color-[#2F2F2F]">
-            Describe what you did...
-          </Text>
-          <View className="w-full bg-[#D9D9D9]">
-            <TextInput className="w-full h-[100px] font-[RobotoMedium] p-2" placeholder="I went to the park and"
-                      multiline = {true}
-                      numberOfLines = {4} 
-                      onChangeText={(description) => {setDescription({description})}}
-                      value={description}>
-
-            </TextInput>
-          </View>
-        </View>
+              </Image>      
+          </DismissKeyboard>
 
       </View>
       <TouchableOpacity className='flex flex-row justify-center gap-2 items-center' onPress={()=>{pressed(); setModalVisible(true)}}>
-        <Text className="color-[#FFFFFF] font-Koulen text-8xl pt-16">
+        <Text className="color-[#FFFFFF] font-Koulen text-8xl pt-10">
           SEND
         </Text>
-        <View className='w-[60px] h-[60px] mb-6'>
+        <View className='w-[60px] h-[60px] mb-11'>
           <Image
             source={image}
             placeholder='asdf'
@@ -76,7 +88,7 @@ const [modalVisible, setModalVisible] = useState(false);
           </Image>
         </View>
       </TouchableOpacity>
-      
+
     </SafeAreaView>
           <FinalResultModal isVisible={modalVisible} setModalVisible={setModalVisible} data={data} />
 
