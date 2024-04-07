@@ -74,10 +74,20 @@ app.post('/upload', async (req, res) => {
     image: 'https://sfhacks-cleanasf.s3.amazonaws.com/' + key,
     trashPoints: resp?.data.points,
     time: new Date(),
+    compost: resp?.data.class1,
+    recycle: resp?.data.class2,
+    landfill: resp?.data.class3,
     location: [37.72649272510185, -122.48261983008864],
   });
   console.log(resp?.data);
-  res.json(resp?.data);
+  res.json({
+    img: 'https://sfhacks-cleanasf.s3.amazonaws.com/' + key,
+    points: resp?.data.points,
+    time: new Date(),
+    class1: resp?.data.class1,
+    class2: resp?.data.class2,
+    class3: resp?.data.class3,
+  });
 });
 
 app.get('/posts', async (req, res) => {
