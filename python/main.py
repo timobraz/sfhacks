@@ -15,11 +15,7 @@ class Item(BaseModel):
 
 # Make a prediction
 def generate_prediction(image):
-<<<<<<< HEAD
     results = model.predict(image, show=False, save=False)
-=======
-    results = model.predict(image, imgsz=(512, 512), show=False, save=False)
->>>>>>> refs/remotes/origin/main
 
     # Convert the image to a numpy array and BGR color for OpenCV
     image_np = np.array(image.convert("RGB"))[:, :, ::-1].copy()
@@ -28,13 +24,9 @@ def generate_prediction(image):
     labels = results[0].names
     classified = [int(x) for x in results[0].boxes.cpu().cls.tolist()]
     results = results[0].boxes.cpu().xywh.tolist()
-<<<<<<< HEAD
     class1_total = 0
     class2_total = 0
     class3_total = 0
-=======
-
->>>>>>> refs/remotes/origin/main
     # Draw each detection on the image
     for i, result in enumerate(results):
         color_map = {
@@ -52,16 +44,12 @@ def generate_prediction(image):
         y1 = y_center - (height // 2)
         x2 = x1 + width
         y2 = y1 + height
-<<<<<<< HEAD
         if classified[i] == 1:
             class1_total += 1
         elif classified[i] == 2:
             class2_total += 1
         elif classified[i] == 3:
             class3_total += 1
-=======
-
->>>>>>> refs/remotes/origin/main
         cv2.rectangle(
             image_np,
             (x1, y1),
@@ -69,7 +57,6 @@ def generate_prediction(image):
             color,
             3,
         )
-<<<<<<< HEAD
     image = cv2.rotate(image_np, cv2.ROTATE_90_CLOCKWISE)
     print(results)
     totals_added = class1_total * 1000 + class2_total * 200 + class3_total * 150
@@ -77,12 +64,6 @@ def generate_prediction(image):
     return {
         "trashPoints": totals_added,
     }
-=======
-    print(results)
-    cv2.imwrite("output.jpg", image_np)
-
-    return base64.b64encode(image_np).decode("utf-8")
->>>>>>> refs/remotes/origin/main
 
 
 # Display the image
