@@ -16,6 +16,9 @@ const PostSchema = new mongoose.Schema({
   trashPoints: { type: Number, required: true },
   time: { type: Date, required: true },
   location: { type: [Number], required: true },
+  recycle: { type: Number, required: true },
+  compost: { type: Number, required: true },
+  landfill: { type: Number, required: true },
 });
 
 const Post = mongoose.model('Post', PostSchema);

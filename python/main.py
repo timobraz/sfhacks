@@ -62,7 +62,10 @@ def generate_prediction(image):
     totals_added = class1_total * 1000 + class2_total * 200 + class3_total * 150
     cv2.imwrite("output.jpg", image)
     return {
-        "trashPoints": totals_added,
+        "points": totals_added,
+        "class1": class1_total,
+        "class2": class2_total,
+        "class3": class3_total,
     }
 
 
@@ -85,7 +88,7 @@ async def read_image(body: Item):
     print("request")
     im = Image.open(BytesIO(base64.b64decode(body.img)))
     resp = generate_prediction(im)
-    return {"points": resp["trashPoints"]}
+    return resp
 
 
 @app.get("/")
