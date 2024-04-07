@@ -52,6 +52,7 @@ def generate_prediction(image):
         )
     print(results)
     cv2.imwrite("output.jpg", image_np)
+
     return base64.b64encode(image_np).decode("utf-8")
 
 
