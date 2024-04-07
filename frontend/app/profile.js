@@ -1,6 +1,7 @@
 import { View, Text, SafeAreaView, Modal, Pressable } from 'react-native';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Image } from 'expo-image';
+import axios from 'axios';
 import Navbar from '../components/navbar';
 const blurhash =
   '|rF?hV%2WCj[ayj[a|j[az_NaeWBj@ayfRayfQfQM{M|azj[azf6fQfQfQIpWXofj[ayj[j[fQayWCoeoeaya}j[ayfQa{oLj?j[WVj[ayayj[fQoff7azayj[ayj[j[ayofayayayj[fQj[ayayj[ayfjj[j[ayjuayj[';
@@ -10,6 +11,17 @@ const Profile = ({ navigation }) => {
   const compostHeight = 'h-10';
   const landfillHeight = 'h-6';
   const recyclingHeight = 'h-12';
+  const [user, setUser] = useState({ compost: 0, landfill: 0, recycle: 0 });
+
+  useEffect(() => {
+    async function getUser() {
+      const res = await axios.get('https://concise-hookworm-utterly.ngrok-free.app/user');
+      console.log('prof', res?.data);
+
+      setUser(res.data);
+    }
+    getUser();
+  }, []);
 
   return (
     <>
@@ -24,8 +36,8 @@ const Profile = ({ navigation }) => {
             className="h-24 w-24 rounded-full"
           />
           <View className="flex-col justify-center  flex-start ml-6">
-            <Text className="font-[Koulen] text-white text-[40px] -mb-4">ANDROID</Text>
-            <Text className="font-[Koulen] text-white text-[25px] ">Andrew A</Text>
+            <Text className="font-[Koulen] text-white text-[40px] -mb-4">"{user.username}"</Text>
+            <Text className="font-[Koulen] text-white text-[25px] ">{user.name}</Text>
           </View>
         </View>
         <View className="h-[200px] w-full bg-zinc-100 rounded-3xl mt-5 p-4">
@@ -36,9 +48,9 @@ const Profile = ({ navigation }) => {
             <Text className="font-[Koulen] text-gray-500 text-[17px] text-center">RECYLCING</Text>
           </View>
           <View className="flex-row justify-around -mt-2">
-            <Text className="font-[Koulen] text-[17px] text-center">38</Text>
-            <Text className="font-[Koulen] text-[17px] text-center">10</Text>
-            <Text className="font-[Koulen] text-[17px] text-center">76</Text>
+            <Text className="font-[Koulen] text-[17px] text-center">{user.compost}</Text>
+            <Text className="font-[Koulen] text-[17px] text-center">{user.landfill}</Text>
+            <Text className="font-[Koulen] text-[17px] text-center">{user.recycle}</Text>
           </View>
           <View className="flex-row justify-around mt-4 items-end w-full">
             <Bar height={compostHeight} color="bg-green-400" />
@@ -51,25 +63,6 @@ const Profile = ({ navigation }) => {
         </View>
       </View>
       <Navbar />
-    </>
-  );
-};
-
-const FinalResultModal = ({ isVisible, setModalVisible }) => {
-  return (
-    <>
-      <Modal animationType="slide" transparent={true} visible={isVisible}>
-        <View className="flex-1 justify-center items-center bg-black bg-opacity-50">
-          <View className="bg-white p-8 rounded-lg">
-            <Image source="https://picsum.photos/200" className="h-40 w-40 rounded-lg mb-4" />
-            <Text className="text-lg font-bold text-center">Congratulations!</Text>
-            <Text className="text-center">You have completed the task.</Text>
-            <Pressable onPress={() => setModalVisible(false)} className="mt-6 bg-blue-500 py-2 px-4 rounded-lg">
-              <Text className="text-white font-bold text-center">Close</Text>
-            </Pressable>
-          </View>
-        </View>
-      </Modal>
     </>
   );
 };

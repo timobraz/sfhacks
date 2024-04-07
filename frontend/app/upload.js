@@ -31,12 +31,11 @@ function Upload() {
 
   const takePicture = async () => {
     if (cameraRef.current) {
-      const { base64 } = await cameraRef.current.takePictureAsync((options = { base64: true, quality: 0.1 }));
+      const { base64 } = await cameraRef.current.takePictureAsync({ base64: true, quality: 0.1 });
       router.push({
         pathname: '/uploadNext',
         params: { imageData: base64 },
-      
-      })
+      });
     }
   };
 
@@ -94,6 +93,5 @@ function Upload() {
     </>
   );
 }
-
 
 export default Upload;
