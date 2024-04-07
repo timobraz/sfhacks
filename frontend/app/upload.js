@@ -32,9 +32,16 @@ function Upload() {
   const takePicture = async () => {
     if (cameraRef.current) {
       const { base64 } = await cameraRef.current.takePictureAsync((options = { base64: true, quality: 0.1 }));
-      const resp = await axios.post('https://concise-hookworm-utterly.ngrok-free.app/upload', {
-        image: base64,
-      });
+      const resp = await axios
+        .post('https://concise-hookworm-utterly.ngrok-free.app/upload', {
+          image: base64,
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+      if (resp) {
+        console.log(resp.data);
+      }
     }
   };
 
@@ -82,7 +89,7 @@ function Upload() {
                   width: 60,
                   marginBottom: 20,
                 }}
-                onPress={takePicture}
+                onPress={() => {router.push('/uploadNext'); takePicture();}}
               />
             </View>
           </Camera>

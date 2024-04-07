@@ -22,7 +22,6 @@ const Menu = ({ navigation }) => {
           <Slot route='heatmap' move={-100} height={10000} description={'Popular trash pickup areas'} navigation={navigation} color={'#CBD87D'} top={340} textcolor='#000000' textmove={65}/>
           <Slot route='about' move={-100} height={10000} description={'Read our story'} navigation={navigation} color={'#EB5851'} top={510} textcolor='#FFFFFF' textmove={30}/>
         </View>
-        
     </SafeAreaView>
     
     <Navbar></Navbar>

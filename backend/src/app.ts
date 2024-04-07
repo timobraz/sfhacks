@@ -11,6 +11,8 @@ import ngrok from '@ngrok/ngrok';
 import User from './models/user';
 import Post from './models/post';
 import axios from 'axios';
+import fs from 'fs';
+import { PutObjectCommand, S3Client } from '@aws-sdk/client-s3';
 // load env
 dotenv.config();
 
@@ -21,6 +23,14 @@ const app = express();
 /**
  * Configure Express.js Middleware
  */
+console.log(process.env.AWS_ACCESS_KEY_ID, process.env.AWS_SECRET_ACCESS_KEY);
+const s3Client = new S3Client({
+  region: 'us-east-1',
+  credentials: {
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID!,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY!,
+  },
+});
 
 app.use(express.json());
 app.use(logger('dev'));
@@ -49,11 +59,30 @@ app.post('/upload', async (req, res) => {
     .catch((err: any) => {
       console.log('failed', err.response.data);
     });
+  const buff = fs.readFileSync('../python/output.jpg');
+
+  const key = Date.now().toString() + '.jpg';
+  const uploaded = await s3Client.send(
+    new PutObjectCommand({
+      Bucket: 'sfhacks-cleanasf',
+      Key: key,
+      Body: buff,
+    }),
+  );
+  Post.create({
+    user_id: '66118ed04fdd4c566623c601',
+    image: 'https://sfhacks-cleanasf.s3.amazonaws.com/' + key,
+    trashPoints: resp?.data.points,
+    time: new Date(),
+    location: [37.72649272510185, -122.48261983008864],
+  });
+  console.log(resp?.data);
   res.json(resp?.data);
 });
 
 app.get('/posts', async (req, res) => {
-  const posts = await Post.find();
+  const posts = await Post.find().populate('user_id');
+
   res.json(posts);
 });
 // Enable custom routes
