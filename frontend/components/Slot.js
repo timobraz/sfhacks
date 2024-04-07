@@ -1,6 +1,7 @@
 import { View, Text,  TouchableWithoutFeedback, Animated, Pressable } from "react-native";
 import {StyleSheet, SafeAreaView} from 'react-native';
 import React, {useRef, useEffect} from 'react';
+import { router } from "expo-router";
 import {
   SafeAreaProvider,
   useSafeAreaInsets,
@@ -40,7 +41,7 @@ const Slot = ({route,move,color,top,textcolor,description,navigation,textmove}) 
       duration: 500,
       useNativeDriver: false,
     }).start();
-    setTimeout(()=>{navigation.navigate(route); moveAnim.setValue(0);textPosition.setValue(0); textOpacity.setValue(1);textTracking.setValue(-2);},500); 
+    setTimeout(()=>{router.push("/"+route); moveAnim.setValue(0);textPosition.setValue(0); textOpacity.setValue(1);textTracking.setValue(-2);},500); 
    
 
   };
