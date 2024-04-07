@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useRef } from 'react';
 import Navbar from '../components/navbar';
 import { Camera } from 'expo-camera';
@@ -20,9 +19,16 @@ function Upload() {
   const takePicture = async () => {
     if (cameraRef.current) {
       const { base64 } = await cameraRef.current.takePictureAsync((options = { base64: true, quality: 0.1 }));
-      const resp = await axios.post('https://concise-hookworm-utterly.ngrok-free.app/upload', {
-        image: base64,
-      });
+      const resp = await axios
+        .post('https://concise-hookworm-utterly.ngrok-free.app/upload', {
+          image: base64,
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+      if (resp) {
+        console.log(resp.data);
+      }
     }
   };
 
@@ -37,17 +43,11 @@ function Upload() {
   return (
     <View className="h-full w-full flex items-center flex-col bg-[#D7BCED]">
       <View className="flex-row gap-5 items-center">
-        <Pressable onPress={()=>navigation.navigate('Menu')}>
-<Image 
-        source={backImg}
-        className="w-10 h-10"
-        />
+        <Pressable onPress={() => navigation.navigate('Menu')}>
+          <Image source={backImg} className="w-10 h-10" />
         </Pressable>
-        
-        <Text className="mt-7 text-[45px] tracking-[10px] text-center font-[Koulen]">
-          Upload
-        </Text>
 
+        <Text className="mt-7 text-[45px] tracking-[10px] text-center font-[Koulen]">Upload</Text>
       </View>
 
       <View

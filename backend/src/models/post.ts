@@ -1,5 +1,5 @@
 import e from 'express';
-import mongoose from 'mongoose';
+import mongoose, { ObjectId, Schema } from 'mongoose';
 /*
 _id
 66119456a9396edf2295ded5
@@ -24,8 +24,7 @@ Array (2)
 -122.419418
 */
 export interface Post {
-  post_id: string;
-  user_id: string;
+  user_id: Schema.Types.ObjectId;
   image: string;
   trashPoints: number;
   descriptions: string;
@@ -34,11 +33,9 @@ export interface Post {
 }
 
 const PostSchema = new mongoose.Schema({
-  post_id: { type: String, required: true },
-  user_id: { type: String, required: true },
+  user_id: { type: Schema.Types.ObjectId, required: true, ref: 'User' },
   image: { type: String, required: true },
   trashPoints: { type: Number, required: true },
-  descriptions: { type: String, required: true },
   time: { type: Date, required: true },
   location: { type: [Number], required: true },
 });
