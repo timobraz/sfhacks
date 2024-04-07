@@ -1,37 +1,28 @@
-import React, { useState, useEffect, useRef } from "react";
-import Navbar from "../components/navbar";
-import { Camera } from "expo-camera";
-import * as MediaLibrary from "expo-media-library";
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  StatusBar,
-  Dimensions,
-  Image,
-  Pressable
-} from "react-native";
 
-
-const { width } = Dimensions.get("window");
-
-function Upload({ navigation }) {
+import React, { useState, useEffect, useRef } from 'react';
+import Navbar from '../components/navbar';
+import { Camera } from 'expo-camera';
+import * as MediaLibrary from 'expo-media-library';
+import { View, Text, TouchableOpacity, StatusBar, Dimensions, Image, Pressable } from 'react-native';
+const { width } = Dimensions.get('window');
+import axios from 'axios';
+function Upload() {
   const [hasPermission, setHasPermission] = useState(null);
   const cameraRef = useRef(null);
 
   useEffect(() => {
     (async () => {
       const { status } = await Camera.requestCameraPermissionsAsync();
-      setHasPermission(status === "granted");
+      setHasPermission(status === 'granted');
     })();
   }, []);
 
   const takePicture = async () => {
     if (cameraRef.current) {
-      const { uri } = await cameraRef.current.takePictureAsync();
-
-      await MediaLibrary.saveToLibraryAsync(uri);
-      console.log("Picture saved to gallery!");
+      const { base64 } = await cameraRef.current.takePictureAsync((options = { base64: true, quality: 0.1 }));
+      const resp = await axios.post('https://concise-hookworm-utterly.ngrok-free.app/upload', {
+        image: base64,
+      });
     }
   };
 
@@ -56,6 +47,7 @@ function Upload({ navigation }) {
         <Text className="mt-7 text-[45px] tracking-[10px] text-center font-[Koulen]">
           Upload
         </Text>
+
       </View>
 
       <View
@@ -65,22 +57,22 @@ function Upload({ navigation }) {
           marginHorizontal: 20,
           marginTop: 20,
           borderRadius: 20,
-          overflow: "hidden",
+          overflow: 'hidden',
         }}
       >
         <Camera style={{ flex: 1 }} ref={cameraRef}>
           <View
             style={{
               flex: 1,
-              backgroundColor: "transparent",
-              justifyContent: "flex-end",
+              backgroundColor: 'transparent',
+              justifyContent: 'flex-end',
             }}
           >
             <TouchableOpacity
               style={{
-                alignSelf: "center",
-                alignItems: "center",
-                backgroundColor: "white",
+                alignSelf: 'center',
+                alignItems: 'center',
+                backgroundColor: 'white',
                 borderRadius: 50,
                 height: 60,
                 width: 60,
