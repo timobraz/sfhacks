@@ -44,7 +44,7 @@ const Feed = () => {
                       <View className="flex-col">
                         <View className="flex-row justify-between w-[270px]">
                           <Text className="font-[Koulen] text-2xl font-bold tracking-tighter color-[#202020] top-1">
-                            {post.user_id.username || 'No username'}
+                            {post.user_id.username || 'Timo'}
                           </Text>
                           <Text className="font-[Koulen] text-xl font-bold tracking-tighter text-green-500 top-1">
                             +{post.trashPoints || 0} Trash Points
