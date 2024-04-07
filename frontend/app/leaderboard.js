@@ -51,9 +51,9 @@ const Leaderboard = () => {
           <View className="h-[200px] w-full bg-zinc-100 rounded-3xl mt-5 p-4">
             <Text className="font-[Koulen] text-center text-[25px] tracking-[2px]">Winner Stats</Text>
             <View className="flex-row justify-around">
-              <Text className="font-[Koulen] text-[17px] text-center">COMPOST</Text>
-              <Text className="font-[Koulen] text-[17px] text-center">LANDFILL</Text>
-              <Text className="font-[Koulen] text-[17px] text-center">RECYLCING</Text>
+              <Text className="font-[Koulen] text-gray-500 text-[17px] text-center">COMPOST</Text>
+              <Text className="font-[Koulen] text-gray-500 text-[17px] text-center">LANDFILL</Text>
+              <Text className="font-[Koulen] text-gray-500 text-[17px] text-center">RECYLCING</Text>
             </View>
             <View className="flex-row justify-around -mt-2">
               <Text className="font-[Koulen] text-[17px] text-center">38</Text>
@@ -61,9 +61,9 @@ const Leaderboard = () => {
               <Text className="font-[Koulen] text-[17px] text-center">76</Text>
             </View>
             <View className="flex-row justify-around mt-4 items-end w-full">
-              <Bar height={compostHeight} color="bg-green-500" />
-              <Bar height={landfillHeight} color="bg-red-500" />
-              <Bar height={recyclingHeight} color="bg-blue-500" />
+              <Bar height={compostHeight} color="bg-green-400" />
+              <Bar height={landfillHeight} color="bg-orange-800" />
+              <Bar height={recyclingHeight} color="bg-sky-200" />
             </View>
           </View>
 
