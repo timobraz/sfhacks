@@ -3,6 +3,9 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 import Navbar from '../components/navbar';
 import React from 'react';
+import { Pressable } from 'react-native';
+import { Image } from 'react-native';
+import { router } from 'expo-router';
 
 const Bar = ({ height, color }) => <View className={`w-5 rounded ${height} ${color}`} />;
 
@@ -10,12 +13,19 @@ const Leaderboard = () => {
   const compostHeight = 'h-10';
   const landfillHeight = 'h-6';
   const recyclingHeight = 'h-12';
+      const backImg = require('../assets/back-arrow.png');
+
   return (
     <>
       <ScrollView className="flex-1">
         <View className="h-full w-full flex flex-col bg-slate-900 pb-28">
           <View>
-            <Text className="mt-7 text-white text-[45px] tracking-[10px] text-center font-[Koulen]">Leaderboard</Text>
+            <Text className="mt-7 text-white text-[45px] tracking-[10px] text-center font-[Koulen]"> <Pressable className="mb-2" onPress={()=>router.push('/Menu')}>
+          <Image 
+          source={backImg}
+          className="w-10 h-10 "
+          />
+        </Pressable>Leaderboard</Text>
             <Text className="text-gray-400 text-2xl text-center font-[Koulen]">in trash points</Text>
           </View>
           {/* <View className="w-full px-7 py-5">

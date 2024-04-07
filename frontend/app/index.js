@@ -24,7 +24,7 @@ const App = () => {
   }
   return (
     <Stack.Navigator
-      initialRouteName="Upload"
+      initialRouteName="Menu"
       independent={true}
       screenOptions={{
         headerBackTitle: 'Back',

@@ -1,6 +1,9 @@
 import { StyleSheet, View, Text } from 'react-native';
 import React from 'react';
 import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
+import { Pressable } from 'react-native';
+import { Image } from 'react-native';
+import { router } from 'expo-router';
 
 const mockData = [
   {
@@ -37,9 +40,17 @@ const BlurredRedDot = () => {
   );
 };
 const Heatmap = ({ navigation }) => {
+    const backImg = require('../assets/back-arrow.png');
+
   return (
     <View className="px-4 bg-[#CBD87D]">
-      <Text className="font-[Koulen] text-[55px] tracking-[16px] text-center pt-5 ml-3">Heatmap</Text>
+      
+      <Text className="font-[Koulen] text-[55px] tracking-[16px] text-center pt-5 ml-3 flex items-center gap-x-3"> <Pressable className="mb-2" onPress={()=>router.push('/Menu')}>
+          <Image 
+          source={backImg}
+          className="w-10 h-10"
+          />
+        </Pressable>Heatmap</Text>
       <Text className="font-[Koulen] text-[25px] text-center -mt-4">Fill The Map!</Text>
       <View>
         <MapView
