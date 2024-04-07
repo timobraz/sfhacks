@@ -19,7 +19,7 @@ const Leaderboard = () => {
     <>
       <SafeAreaView className="h-[2000px] flex flex-col pb-28 bg-[#202020] -mt-16">
         <View>
-          <Text className="mt-3 text-white text-[63px] tracking-[10px] text-center font-[Koulen] ml-2">
+          <Text className="mt-3 text-white text-[62px] tracking-[7x] text-center font-[Koulen] ml-2">
             Leaderboard
           </Text>
           <Text className="text-gray-400 text-xl text-center font-[Koulen] -mt-6">in trash points</Text>
@@ -36,10 +36,10 @@ const Leaderboard = () => {
         <View className="flex-col justify-center -mt-8">
           <View className="flex-row gap-x-4 items-center justify-center">
             <MaterialCommunityIcons name="crown" size={45} color="gold" />
-            <Text className="text-6xl font-[Koulen] text-white leading-[150px]">I luv SF</Text>
+            <Text className="text-5xl font-[Koulen] text-white leading-[150px]">I luv SF</Text>
             <Text className="text-md font-semibold text-green-500 font-[Koulen]">29840 pts</Text>
           </View>
-          <View className="ml-8 mr-8 -mt-8">
+          <View className="ml-8 mr-8 -mt-10">
             {[
               { rank: '2.', name: 'ECOWARRIOR', points: '22400 pts' },
               { rank: '3.', name: 'TEMU', points: '19700 pts' },
@@ -56,8 +56,8 @@ const Leaderboard = () => {
             ))}
           </View>
         </View>
-        <View className="h-[190px] w-full bg-zinc-100 rounded-3xl mt-5 p-3">
-          <Text className="font-[Koulen] text-center text-[25px] tracking-[2px]">Winner Stats</Text>
+        <View className="h-[190px] left-[3.5%] w-[93%] bg-zinc-100 rounded-3xl mt-5 p-3">
+          <Text className="font-[Koulen] text-center text-[25px] tracking-[2px]">Leading Player's Stats</Text>
           <View className="flex-row justify-around">
             <Text className="font-[Koulen] text-gray-500 text-[17px] text-center">COMPOST</Text>
             <Text className="font-[Koulen] text-gray-500 text-[17px] text-center">LANDFILL</Text>
@@ -75,12 +75,12 @@ const Leaderboard = () => {
           </View>
         </View>
 
-        <View className="h-auto w-full bg-zinc-100 rounded-3xl mt-2 p-4">
-          <View className="ml-2">
+        <View className="h-auto w-[93%] bg-zinc-100 left-[3.5%] rounded-3xl mt-2 p-4">
+          <View className="ml-2 -mt-2">
             <Text className="font-[Koulen]  text-left text-[30px] tracking-[2px]">You are...</Text>
-            <Text className="flex text-xl mt-[22px] font-[Koulen]">
-              <Text className="text-green-500 font-bold">2700</Text> points away from taking number{' '}
-              <Text className="text-green-500 font-bold">2</Text> on the leaderboard
+            <Text className="flex text-xl mt-[0px] font-[Koulen]">
+              <Text className="text-green-500 font-bold">2700</Text> points away from{' '}
+              <Text className="text-green-500 font-bold ">2nd</Text> place!
             </Text>
           </View>
         </View>

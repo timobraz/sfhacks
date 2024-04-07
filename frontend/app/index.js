@@ -1,6 +1,6 @@
 import React from 'react';
 
-import About from "./about";
+import Learn from "./learn";
 import Upload from "./upload";
 import Leaderboard from "./leaderboard";
 import Heatmap from "./heatmap";
