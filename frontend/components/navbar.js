@@ -13,7 +13,7 @@ export default function Navbar({navigation}) {
       <TouchableOpacity onPress={() => router.push("/Menu")}>
         <EvilIcons name="navicon" size={30} color="black" />
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => router.push("/profile")}>
+      <TouchableOpacity onPress={() => router.push("/uploadNext")}>
         <AntDesign name="user" size={24} color="black" />
       </TouchableOpacity>
     </View>
