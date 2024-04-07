@@ -10,9 +10,11 @@ import { connect } from './utils/conn';
 import ngrok from '@ngrok/ngrok';
 import User from './models/user';
 import Post from './models/post';
+import bodyParser from 'body-parser';
 import axios from 'axios';
 import fs from 'fs';
 import { PutObjectCommand, S3Client } from '@aws-sdk/client-s3';
+import { ObjectId } from 'mongodb';
 // load env
 dotenv.config();
 
@@ -23,7 +25,6 @@ const app = express();
 /**
  * Configure Express.js Middleware
  */
-console.log(process.env.AWS_ACCESS_KEY_ID, process.env.AWS_SECRET_ACCESS_KEY);
 const s3Client = new S3Client({
   region: 'us-east-1',
   credentials: {
@@ -31,8 +32,14 @@ const s3Client = new S3Client({
     secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY!,
   },
 });
-
+app.use(
+  bodyParser.json({
+    limit: '50mb',
+  }),
+);
+app.use(bodyParser());
 app.use(express.json());
+
 app.use(logger('dev'));
 app.use(function (req, res, next) {
   res.header('x-powered-by', 'serverless-express');
@@ -46,9 +53,9 @@ app.get('/', (req, res) => {
   res.send('Hello World');
 });
 
-app.get('/users', async (req, res) => {
-  const users = await User.find();
-  res.json(users);
+app.get('/user', async (req, res) => {
+  const user = await User.findById('66118ed04fdd4c566623c5ef');
+  res.json(user);
 });
 
 app.post('/upload', async (req, res) => {
@@ -69,17 +76,25 @@ app.post('/upload', async (req, res) => {
       Body: buff,
     }),
   );
+  const offset = Math.random() * 0.0001 - 0.00005;
   Post.create({
-    user_id: '66118ed04fdd4c566623c601',
+    user_id: new ObjectId('66118ed04fdd4c566623c5ef'),
     image: 'https://sfhacks-cleanasf.s3.amazonaws.com/' + key,
     trashPoints: resp?.data.points,
     time: new Date(),
     compost: resp?.data.class1,
     recycle: resp?.data.class2,
     landfill: resp?.data.class3,
-    location: [37.72649272510185, -122.48261983008864],
+    location: [37.72649272510185 + offset, -122.48261983008864 + offset],
   });
-  console.log(resp?.data);
+  User.findByIdAndUpdate('66118ed04fdd4c566623c5ef', {
+    $inc: {
+      trashPoints: resp?.data.points,
+      compost: resp?.data.class1,
+      recycle: resp?.data.class2,
+      landfill: resp?.data.class3,
+    },
+  }).exec();
   res.json({
     img: 'https://sfhacks-cleanasf.s3.amazonaws.com/' + key,
     points: resp?.data.points,
@@ -91,7 +106,7 @@ app.post('/upload', async (req, res) => {
 });
 
 app.get('/posts', async (req, res) => {
-  const posts = await Post.find().populate('user_id');
+  const posts = await Post.find().populate('user_id').sort({ time: -1 });
 
   res.json(posts);
 });
