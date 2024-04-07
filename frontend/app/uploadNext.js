@@ -35,7 +35,7 @@ function UploadNext() {
   const magicPress = async () => {
     try {
       const res = await axios.get('https://concise-hookworm-utterly.ngrok-free.app/pun?caption=test');
-      setDescription("      "+ res.data.pun.replaceAll("\"", ""));
+      setDescription( res.data.pun.replaceAll("\"", ""));
     } catch (error) {
       console.error(error);
     }}
@@ -68,7 +68,7 @@ function UploadNext() {
             <Text className="text-2xl font-[Koulen] pt-6 color-[#2F2F2F]">Describe what you did...</Text>
             <View className="w-full bg-[#D9D9D9] flex flex-row-reverse justify-around px-4 p-3">
               <TextInput
-                className="w-full h-[70px] font-[RobotoMedium]"
+                className="w-full h-[70px] font-[RobotoMedium] pl-4 pr-2"
                 placeholder="      Generate description with AI?"
                 multiline={true}
                 numberOfLines={4}

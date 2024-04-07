@@ -50,8 +50,8 @@ const Feed = () => {
                             +{post.trashPoints || 0} Trash Points
                           </Text>
                         </View>
-                        <Text className="font-[RobotoRegular] text-[17px] tracking-tighter color-[#858484] top-1 w-[314px] leading-[-5px]">
-                          {post.descriptions || 'No description available'}
+                        <Text className="font-[RobotoRegular] text-[17px] tracking-tighter color-[#858484] top-1 w-[270px] leading-[-5px]">
+                          {post.description || 'No description available'}
                         </Text>
                       </View>
                     </View>

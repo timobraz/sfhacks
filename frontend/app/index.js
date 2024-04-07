@@ -31,7 +31,7 @@ const App = () => {
     return null;
   }
   return (
-    <Menu></Menu>
+    <Feed></Feed>
 
   );
 };
