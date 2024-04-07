@@ -6,8 +6,11 @@
 import express from 'express';
 import logger from 'morgan';
 import dotenv from 'dotenv-flow';
-import connect from './utils/conn';
-import { Db } from 'mongodb';
+import { connect } from './utils/conn';
+import ngrok from '@ngrok/ngrok';
+import User from './models/user';
+import Post from './models/post';
+import axios from 'axios';
 // load env
 dotenv.config();
 
@@ -29,10 +32,30 @@ app.use(function (req, res, next) {
   next();
 });
 
-/**
- * Routes - Public
- */
+app.get('/', (req, res) => {
+  res.send('Hello World');
+});
 
+app.get('/users', async (req, res) => {
+  const users = await User.find();
+  res.json(users);
+});
+
+app.post('/upload', async (req, res) => {
+  const resp = await axios
+    .post('http://127.0.0.1:5000/image', {
+      img: req.body.image,
+    })
+    .catch((err: any) => {
+      console.log('failed', err.response.data);
+    });
+  res.json(resp?.data);
+});
+
+app.get('/posts', async (req, res) => {
+  const posts = await Post.find();
+  res.json(posts);
+});
 // Enable custom routes
 
 /**
@@ -48,10 +71,10 @@ app.use(function (req, res) {
  * Start Express server
  */
 const port = process.env.PORT || 3000;
-connect()
-  .then((db) =>
-    app.listen(port, () => {
-      console.log(`Server started on http://localhost:${port}`);
-    }),
-  )
-  .catch(console.error);
+connect();
+app.listen(port, () => {
+  console.log(`Server started on http://localhost:${port}`);
+});
+ngrok
+  .connect({ addr: 3000, authtoken_from_env: true, domain: process.env.NGROK_SUBDOMAIN })
+  .then((listener) => console.log(`Ingress established at: ${listener.url()}`));
