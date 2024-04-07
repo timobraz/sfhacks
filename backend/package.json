@@ -18,6 +18,7 @@
     "mongoose": "^8.3.0",
     "morgan": "^1.10.0",
     "neurelo-sdk": "file:neurelo-sdk-typescript-cmt_e221a5.tgz",
+    "openai": "^4.33.0",
     "typescript": "^5.3.3"
   },
   "devDependencies": {
