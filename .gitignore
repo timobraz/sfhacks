@@ -36,3 +36,4 @@ yarn-error.*
 yolo*
 node_modules
 backend/.env
+python/output.jpg

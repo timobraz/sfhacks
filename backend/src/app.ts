@@ -23,6 +23,7 @@ const app = express();
 /**
  * Configure Express.js Middleware
  */
+console.log(process.env.AWS_ACCESS_KEY_ID, process.env.AWS_SECRET_ACCESS_KEY);
 const s3Client = new S3Client({
   region: 'us-east-1',
   credentials: {
